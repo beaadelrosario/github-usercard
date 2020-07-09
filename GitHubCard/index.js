@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
@@ -6,7 +7,7 @@ import axios from 'axios';
 */
 
 
-const data = {
+const myStuff = {data: [{
   "avatar_url": "https://avatars0.githubusercontent.com/u/65781305?v=4",
   "bio": "New Yorker living in San Francisco, CA. Studying Front End Web Development at Lambda School.",
   "blog": "",
@@ -39,7 +40,42 @@ const data = {
   "type": "User",
   "updated_at": "2020-07-09T20:21:30Z",
   "url": "https://api.github.com/users/beaadelrosario"
+},
+{
+  "avatar_url": "https://avatars1.githubusercontent.com/u/66022270?v=4",
+  "bio": "This is my bio",
+  "blog": "",
+  "company": null, 
+  "created_at": "2020-05-27T14:45:40Z",
+  "email": null,
+  "events_url": "https://api.github.com/users/zavier-lambda/events{/privacy}",
+  "followers": 0,
+  "followers_url": "https://api.github.com/users/zavier-lambda/followers", 
+  "following": 0,
+  "following_url": "https://api.github.com/users/zavier-lambda/following{/other_user}",
+  "gists_url": "https://api.github.com/users/zavier-lambda/gists{/gist_id}",
+  "gravatar_id": "", 
+  "hireable": null,
+  "html_url": "https://github.com/zavier-lambda",
+  "id": 66022270,
+  "location": "Orlando, FL", 
+  "login": "zavier-lambda",
+  "name": "Zavier",
+  "node_id": "MDQ6VXNlcjY2MDIyMjcw",
+  "organizations_url": "https://api.github.com/users/zavier-lambda/orgs", 
+  "public_gists": 0,
+  "public_repos": 20,
+  "received_events_url": "https://api.github.com/users/zavier-lambda/received_events",
+  "repos_url": "https://api.github.com/users/zavier-lambda/repos", 
+  "site_admin": false,
+  "starred_url": "https://api.github.com/users/zavier-lambda/starred{/owner}{/repo}",
+  "subscriptions_url": "https://api.github.com/users/zavier-lambda/subscriptions",
+  "twitter_username": null,
+  "type": "User",
+  "updated_at": "2020-07-09T18:24:27Z",
+  "url": "https://api.github.com/users/zavier-lambda"
 }
+]}
 
 
 /*
@@ -69,6 +105,8 @@ const data = {
 const followersArray = ["zavier-lambda",
 "sambrown0322","micherre","nicholas-myers", "jdulay91", "StaceyLouis", "OrlandoDavila", "avawing", "galosandoval"];
 
+console.log(followersArray)
+
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
@@ -90,6 +128,7 @@ const followersArray = ["zavier-lambda",
 */
 
 function socialCard(object){
+  // object = object.data
   let divCard = document.createElement('div')
   divCard.className = 'card'
 
@@ -147,12 +186,28 @@ function socialCard(object){
 console.log(socialCard)
 
 let cards = document.querySelector('.cards') //step4?
-cards.appendChild(socialCard(data))
+cards.appendChild(socialCard(myStuff))
 
 let followersCards = document.querySelector('.cards')
-followersArray.forEach((object) => {
-  followersCards.appendChild(socialCard(object))
-})
+// followersArray.forEach((object) => {
+//   console.log(object)
+//   const otherUsersURL = `https://api.github.com/users/${object}`
+//   axios.get(otherUsersURL)
+//   .then(function(value){
+//     console.log(value)
+//     followersCards.appendChild(socialCard(value))
+//   })
+//   .catch(function(error){
+//     console.log(error)
+//   })
+// })
+
+let dataSet = myStuff.data
+dataSet.forEach((object) => {
+    console.log(object)
+      followersCards.appendChild(socialCard(object))
+    })
+
 
 /*
   List of LS Instructors Github username's:
