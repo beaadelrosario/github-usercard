@@ -5,42 +5,42 @@ import axios from 'axios';
     https://api.github.com/users/beaadelrosario
 */
 
-/*
-{
-    "avatar_url": "https://avatars0.githubusercontent.com/u/65781305?v=4",
-    "bio": null,
-    "blog": "",
-    "company": null,
-    "created_at": "2020-05-22T16:51:43Z",
-    "email": null,
-    "events_url": "https://api.github.com/users/beaadelrosario/events{/privacy}",
-    "followers": 5,
-    "followers_url": "https://api.github.com/users/beaadelrosario/followers",
-    "following": 3,
-    "following_url": "https://api.github.com/users/beaadelrosario/following{/other_user}",
-    "gists_url": "https://api.github.com/users/beaadelrosario/gists{/gist_id}",
-    "gravatar_id": "",
-    "hireable": null,
-    "html_url": "https://github.com/beaadelrosario",
-    "id": 65781305,
-    "location": null,
-    "login": "beaadelrosario",
-    "name": null,
-    "node_id": "MDQ6VXNlcjY1NzgxMzA1",
-    "organizations_url": "https://api.github.com/users/beaadelrosario/orgs",
-    "public_gists": 0,
-    "public_repos": 20,
-    "received_events_url": "https://api.github.com/users/beaadelrosario/received_events",
-    "repos_url": "https://api.github.com/users/beaadelrosario/repos",
-    "site_admin": false,
-    "starred_url": "https://api.github.com/users/beaadelrosario/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/beaadelrosario/subscriptions",
-    "twitter_username": null,
-    "type": "User",
-    "updated_at": "2020-07-09T17:58:42Z",
-    "url": "https://api.github.com/users/beaadelrosario"
+
+const data = {
+  "avatar_url": "https://avatars0.githubusercontent.com/u/65781305?v=4",
+  "bio": "New Yorker living in San Francisco, CA. Studying Front End Web Development at Lambda School.",
+  "blog": "",
+  "company": null,
+  "created_at": "2020-05-22T16:51:43Z",
+  "email": null,
+  "events_url": "https://api.github.com/users/beaadelrosario/events{/privacy}",
+  "followers": 6,
+  "followers_url": "https://api.github.com/users/beaadelrosario/followers",
+  "following": 3,
+  "following_url": "https://api.github.com/users/beaadelrosario/following{/other_user}",
+  "gists_url": "https://api.github.com/users/beaadelrosario/gists{/gist_id}",
+  "gravatar_id": "",
+  "hireable": null,
+  "html_url": "https://github.com/beaadelrosario",
+  "id": 65781305,
+  "location": "San Francisco, CA",
+  "login": "beaadelrosario",
+  "name": "Bea Del Rosario",
+  "node_id": "MDQ6VXNlcjY1NzgxMzA1",
+  "organizations_url": "https://api.github.com/users/beaadelrosario/orgs",
+  "public_gists": 0,
+  "public_repos": 20,
+  "received_events_url": "https://api.github.com/users/beaadelrosario/received_events",
+  "repos_url": "https://api.github.com/users/beaadelrosario/repos",
+  "site_admin": false,
+  "starred_url": "https://api.github.com/users/beaadelrosario/starred{/owner}{/repo}",
+  "subscriptions_url": "https://api.github.com/users/beaadelrosario/subscriptions",
+  "twitter_username": null,
+  "type": "User",
+  "updated_at": "2020-07-09T20:21:30Z",
+  "url": "https://api.github.com/users/beaadelrosario"
 }
-*/
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -66,7 +66,8 @@ import axios from 'axios';
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ["zavier-lambda",
+"sambrown0322","micherre","nicholas-myers", "jdulay91", "StaceyLouis", "OrlandoDavila", "avawing", "galosandoval"];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -88,37 +89,46 @@ const followersArray = [];
     </div>
 */
 
-function socialCard({something}){
+function socialCard(object){
   let divCard = document.createElement('div')
   divCard.className = 'card'
 
   let image = document.createElement('img')
-  // image.src = {something}
-  // image.classList.add = ('user-image')
-  // divCard.classList.add = ('div-Card')
+  image.src = object.avatar_url
+  image.classList.add = ('user-image')
+  divCard.classList.add = ('div-Card')
 
   let divCardInfo = document.createElement('div')
   divCardInfo.className = 'card-info'
 
   let name = document.createElement('h3')
   name.className = 'name'
+  name.textContent = object.name
 
   let userName = document.createElement('p')
   userName.className = 'username'
+  userName.textContent = object.login
   let location = document.createElement('p')
   location.className = 'location'
+  location.textContent = `LOCATION: ${object.location}`
 
   let profile = document.createElement('p')
   profile.className = 'profile'
+  profile.textContent = 'Profile: '
   let profileLink = document.createElement('a')
   profileLink.className = 'profileLink'
+  profileLink.textContent = object.html_url
 
   let followers = document.createElement('p')
   followers.className = 'followers'
+  // followers.textContent = 'Followers: '
+  followers.textContent = `FOLLOWERS: ${object.followers}`
   let following = document.createElement('p')
   following.className = 'following'
+  following.textContent = `FOLLOWING: ${object.following}`
   let bio = document.createElement('p')
   bio.className = 'bio'
+  bio.textContent = `BIO: ${object.bio}`
 
   divCard.appendChild(image)
   divCard.appendChild(divCardInfo)
@@ -131,7 +141,18 @@ function socialCard({something}){
   divCardInfo.appendChild(bio)
   profile.appendChild(profileLink)
 
+  return divCard
 }
+
+console.log(socialCard)
+
+let cards = document.querySelector('.cards') //step4?
+cards.appendChild(socialCard(data))
+
+let followersCards = document.querySelector('.cards')
+followersArray.forEach((object) => {
+  followersCards.appendChild(socialCard(object))
+})
 
 /*
   List of LS Instructors Github username's:
