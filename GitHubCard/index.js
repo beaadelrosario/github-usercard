@@ -1,7 +1,45 @@
+import axios from 'axios';
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
-    https://api.github.com/users/<your name>
+    https://api.github.com/users/beaadelrosario
+*/
+
+/*
+{
+    "avatar_url": "https://avatars0.githubusercontent.com/u/65781305?v=4",
+    "bio": null,
+    "blog": "",
+    "company": null,
+    "created_at": "2020-05-22T16:51:43Z",
+    "email": null,
+    "events_url": "https://api.github.com/users/beaadelrosario/events{/privacy}",
+    "followers": 5,
+    "followers_url": "https://api.github.com/users/beaadelrosario/followers",
+    "following": 3,
+    "following_url": "https://api.github.com/users/beaadelrosario/following{/other_user}",
+    "gists_url": "https://api.github.com/users/beaadelrosario/gists{/gist_id}",
+    "gravatar_id": "",
+    "hireable": null,
+    "html_url": "https://github.com/beaadelrosario",
+    "id": 65781305,
+    "location": null,
+    "login": "beaadelrosario",
+    "name": null,
+    "node_id": "MDQ6VXNlcjY1NzgxMzA1",
+    "organizations_url": "https://api.github.com/users/beaadelrosario/orgs",
+    "public_gists": 0,
+    "public_repos": 20,
+    "received_events_url": "https://api.github.com/users/beaadelrosario/received_events",
+    "repos_url": "https://api.github.com/users/beaadelrosario/repos",
+    "site_admin": false,
+    "starred_url": "https://api.github.com/users/beaadelrosario/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/beaadelrosario/subscriptions",
+    "twitter_username": null,
+    "type": "User",
+    "updated_at": "2020-07-09T17:58:42Z",
+    "url": "https://api.github.com/users/beaadelrosario"
+}
 */
 
 /*
@@ -49,6 +87,51 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function socialCard({something}){
+  let divCard = document.createElement('div')
+  divCard.className = 'card'
+
+  let image = document.createElement('img')
+  // image.src = {something}
+  // image.classList.add = ('user-image')
+  // divCard.classList.add = ('div-Card')
+
+  let divCardInfo = document.createElement('div')
+  divCardInfo.className = 'card-info'
+
+  let name = document.createElement('h3')
+  name.className = 'name'
+
+  let userName = document.createElement('p')
+  userName.className = 'username'
+  let location = document.createElement('p')
+  location.className = 'location'
+
+  let profile = document.createElement('p')
+  profile.className = 'profile'
+  let profileLink = document.createElement('a')
+  profileLink.className = 'profileLink'
+
+  let followers = document.createElement('p')
+  followers.className = 'followers'
+  let following = document.createElement('p')
+  following.className = 'following'
+  let bio = document.createElement('p')
+  bio.className = 'bio'
+
+  divCard.appendChild(image)
+  divCard.appendChild(divCardInfo)
+  divCardInfo.appendChild(name)
+  divCardInfo.appendChild(userName)
+  divCardInfo.appendChild(location)
+  divCardInfo.appendChild(profile)
+  divCardInfo.appendChild(followers)
+  divCardInfo.appendChild(following)
+  divCardInfo.appendChild(bio)
+  profile.appendChild(profileLink)
+
+}
 
 /*
   List of LS Instructors Github username's:
