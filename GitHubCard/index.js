@@ -160,7 +160,6 @@ function socialCard(object){
 
   let followers = document.createElement('p')
   followers.className = 'followers'
-  // followers.textContent = 'Followers: '
   followers.textContent = `FOLLOWERS: ${object.followers}`
   let following = document.createElement('p')
   following.className = 'following'
